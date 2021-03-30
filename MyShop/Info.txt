@@ -1,0 +1,4 @@
+1º Fazer o model
+2º Product Repository
+3º Referencias
+4º 
