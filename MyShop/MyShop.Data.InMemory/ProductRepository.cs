@@ -30,6 +30,7 @@ namespace MyShop.Data.InMemory
             products.Add(p);
         }
 
+
         public void Update (Product product)
         {
             Product productToUpdate = products.Find(p => p.Id == product.Id);
