@@ -24,7 +24,7 @@ namespace MyShop2.WebIU.Controllers
             return View(products);
         }
 
-        public ActionResult Creat()
+        public ActionResult Create()
         {
             Product product = new Product();
             return View(product);
@@ -41,7 +41,6 @@ namespace MyShop2.WebIU.Controllers
             {
                 context.Insert(product);
                 context.Commit();
-
                 return RedirectToAction("Index");
             }
         }
@@ -81,6 +80,36 @@ namespace MyShop2.WebIU.Controllers
 
                 context.Commit();
 
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult Delete(string Id)
+        {
+            Product productToDelete = context.Find(Id);
+            if (productToDelete == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(productToDelete);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult Delete(Product product, string Id)
+        {
+            Product productToDelete = context.Find(Id);
+            if (productToDelete == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                context.Delete(Id);
+                context.Commit();
                 return RedirectToAction("Index");
             }
         }

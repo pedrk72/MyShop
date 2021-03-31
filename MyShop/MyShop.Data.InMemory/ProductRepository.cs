@@ -15,7 +15,7 @@ namespace MyShop.Data.InMemory
 
         public ProductRepository()
         {
-            products = cache["producst"] as List<Product>;
+            products = cache["products"] as List<Product>;
             if (products == null)
             {
                 products = new List<Product>();
