@@ -10,11 +10,13 @@ namespace MyShop2.WebIU.Controllers
 {
     public class ProductCategoryManagerController : Controller
     {
-        ProductCategoryRepository context;
+        // Em vez de utilizar os repositorios especificos, utilizar um generalista
+        //ProductCategoryRepository context;
+        InMemoryRepository<ProductCategory> context;
 
         public ProductCategoryManagerController()
         {
-            context = new ProductCategoryRepository();
+            context = new InMemoryRepository<ProductCategory>();
         }
 
         // GET: ProductManager

@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class ProductCategory
+    public class ProductCategory : BaseEntity
     {
-        public string  Id { get; set; }
+        // Como o Base Entity (abstract model) já tem um Id, podemos tirar daqui
+        //public string  Id { get; set; }
         public string Category { get; set; }
 
+        /*
         public ProductCategory()
         {
             this.Id = Guid.NewGuid().ToString();
-        }
+        }*/
     }
 }

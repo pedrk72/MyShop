@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
-        public string Id { get; set; }
+        // Como o Base Entity (abstract model) já tem um Id, podemos tirar daqui
+        //public string Id { get; set; }
 
         [StringLength(20)]
         [DisplayName("Product Name")]
@@ -23,9 +24,10 @@ namespace MyShop.Core.Models
         public string Image { get; set; }
 
         //Contrutores
+        /*
         public Product()
         {
             this.Id = Guid.NewGuid().ToString();
-        }
+        }*/
     }
 }

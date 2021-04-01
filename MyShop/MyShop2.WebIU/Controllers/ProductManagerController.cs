@@ -4,17 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyShop.Core.Models;
+using MyShop.Core.ViewModels;
 using MyShop.Data.InMemory;
 
 namespace MyShop2.WebIU.Controllers
 {
     public class ProductManagerController : Controller
     {
-        ProductRepository context;
-        
+        //Em vez de utilizar os repositorios especificos, utilizar um generalista
+        //ProductRepository context;
+        //ProductCategoryRepository productCategories;
+
+        InMemoryRepository<Product> context;
+        InMemoryRepository<ProductCategory> productCategories;
+
+
         public ProductManagerController()
         {
-            context = new ProductRepository();
+            context = new InMemoryRepository<Product>();
+            productCategories = new InMemoryRepository<ProductCategory>();
         }
 
         // GET: ProductManager
@@ -26,8 +34,13 @@ namespace MyShop2.WebIU.Controllers
 
         public ActionResult Create()
         {
-            Product product = new Product();
-            return View(product);
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+
+            viewModel.Product = new Product();
+            viewModel.ProductCategories = productCategories.Collection();
+            
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -54,7 +67,12 @@ namespace MyShop2.WebIU.Controllers
             }
             else
             {
-                return View(product);
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+                viewModel.Product = product;
+                viewModel.ProductCategories = productCategories.Collection();
+
+                return View(viewModel);
             }
         }
 
